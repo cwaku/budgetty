@@ -42,6 +42,9 @@ gem "tzinfo-data"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Add Devise for authentication
+gem "devise"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
