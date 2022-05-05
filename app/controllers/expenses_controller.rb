@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
-
   # GET /expenses or /expenses.json
+
   def index
     @expenses = current_user.expenses.order(created_at: :desc).all
     @category = Category.includes(:categories_expenses).where(id: params[:id])
@@ -31,18 +31,17 @@ class ExpensesController < ApplicationController
     @category = Category.all
   end
 
-
   # POST /expenses or /expenses.json
+
   def create
     @expense = current_user.expenses.new(expense_params)
     @category = Category.all
-
-      if @expense.save
-        CategoriesExpense.create(category_id: @expense.category_id, expense_id: @expense.id)
-        redirect_to expense_url(@expense), flash: { success: 'Expense was successfully created.' }
-      else
-        redirect_to new_category_expense_url, flash: { danger: 'Expense was not created.' }
-      end
+    if @expense.save
+      CategoriesExpense.create(category_id: @expense.category_id, expense_id: @expense.id)
+      redirect_to expense_url(@expense), flash: { success: 'Expense was successfully created.' }
+    else
+      redirect_to new_category_expense_url, flash: { danger: 'Expense was not created.' }
+    end
   end
 
   private
