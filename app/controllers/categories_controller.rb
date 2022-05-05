@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show edit update destroy]
+  # before_action :set_category, only: %i[show edit update destroy]
 
   # GET /categories or /categories.json
   def index
@@ -8,9 +8,10 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1 or /categories/1.json
   def show
-    @category = Category.find(params[:id])
-    @expenses = Expense.includes(:categories_expenses).where(category_id: @category.id).order(created_at: :desc)
-    @total_cost = @expenses.where(category_id: @category.id).sum(:amount)
+    @categoryi = Category.find(params[:id])
+    @expense = Expense.includes(:categories_expenses).where(category_id: @categoryi.id).order(created_at: :desc)
+    @total_cost = @expense.where(category_id: @categoryi.id).sum(:amount)
+    @category = Category.includes(:categories_expenses).where(id: params[:id])
   end
 
   # GET /categories/new
