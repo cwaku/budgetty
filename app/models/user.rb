@@ -4,5 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :expenses
+  has_many :categories
+
   validates :name, presence: true, length: { maximum: 50 }
+
+  def admin?(requested_role)
+    role == requested_role.to_s
+  end
 end

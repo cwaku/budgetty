@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories_expenses
   resources :categories
   resources :expenses
   devise_for :users
