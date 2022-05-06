@@ -1,10 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @expense %>
+<div>
+  <h2>Details</h2>
+  <div>
+    <p>Transaction Cost</p>
+    <p>$<%= @expense.amount %></p>
+  </div>
+  <h2><%= @expense.name%></h2>
+  <p>Date: <%= @expense.created_at.strftime('%d-%m-%Y')%></p>
+  <p>Time: <%= @expense.created_at.strftime('%H-%M-%S')%></p>
+</div>
+
+
 
 <div>
-  <%= link_to "Edit this expense", edit_expense_path(@expense) %> |
-  <%= link_to "Back to expenses", expenses_path %>
-
-  <%= button_to "Destroy this expense", @expense, method: :delete %>
+  <%= link_to "Add transaction", new_expense_path %> |
+  <%= link_to "Back", category_path%>
 </div>

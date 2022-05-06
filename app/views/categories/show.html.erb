@@ -1,10 +1,29 @@
 <p style="color: green"><%= notice %></p>
+<h2>Transactions</h2>
+<div>
+  <p>Total Cost: $<%= @total_cost%>.00</p>
+</div>
 
-<%= render @category %>
+<div id="transactions">
+  <% @expense.each_with_index do |transaction, index| %>
+  <%= link_to expense_path(transaction.id) do %>
+    <div>
+      <% @category.each do |icon|%>
+        <%= image_tag icon.icon %>
+      <% end %>
+      <div>
+        <%= transaction.name %>
+        Date: <%= transaction.created_at.strftime('%d-%m-%Y')%>
+        Time: <%= transaction.created_at.strftime('%H-%M-%S')%>
+      </div>
+      <p><%= transaction.amount %></p>
+    </div>
+  <% end %>
+  <% end %>
+</div>
+
 
 <div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
-  <%= link_to "Back to categories", categories_path %>
-
-  <%= button_to "Destroy this category", @category, method: :delete %>
+  <%= link_to 'Add transaction', new_expense_path%>
+  <%= link_to 'Back', categories_path%>
 </div>

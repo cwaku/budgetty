@@ -1,6 +1,19 @@
 <h1>New category</h1>
 
-<%= render "form", category: @category %>
+<%# Form to create category %>
+<%= form_with model: @category do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, require:true %>
+  </div>
+  <div>
+    <%= f.label :icon %>
+    <%= f.text_field :icon, require:true, placeholder: "https://..." %>
+  </div>
+  <div>
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
 
 <br>
 

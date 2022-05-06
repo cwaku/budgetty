@@ -1,14 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Categories</h1>
-
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
+<% if @categories.empty? %>
+  <p style="color: red">No categories yet</p>
+<% else %>
+  <div id="categories">
+    <% @categories.each_with_index do |category, index| %>
+      <%= link_to category_path(category.id) do %>
+        <div>
+          <%= image_tag category.icon %>
+          <div>
+            <%= category.name %>
+            Date: <%= category.created_at.strftime('%d-%m-%Y')%>
+            Time: <%= category.created_at.strftime('%H-%M-%S')%>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+<br>
+<div>
+  <%= link_to "New category", new_category_path %>
 </div>
-
-<%= link_to "New category", new_category_path %>

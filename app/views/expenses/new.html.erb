@@ -1,9 +1,24 @@
-<h1>New expense</h1>
-
-<%= render "form", expense: @expense %>
-
-<br>
+<div>
+  <h2>Add transaction</h2>
+  <%= form_with model: @expense do |f| %>
+    <div>
+      <%= f.label :category %>
+      <%= f.select :category_id, @category.map { |category| [category.name, category.id] } %>
+    </div>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name, require: true %>
+    </div>
+    <div>
+      <%= f.label :amount %>
+      <%= f.number_field :amount, placeholder: "Enter amount", require: true %>
+    </div>
+    <div>
+      <%= f.submit "Save" %>
+    </div>
+  <% end %>
+</div>
 
 <div>
-  <%= link_to "Back to expenses", expenses_path %>
+  <%= link_to "Add category", new_category_path %>
 </div>
