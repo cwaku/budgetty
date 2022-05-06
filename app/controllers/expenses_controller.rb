@@ -20,7 +20,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params[:id])
     @category = Category.find(@expense.category_id)
     @total_cost = 0
-    @category.expenses.each do |categories_expense|
+    @category.categories_expenses.each do |categories_expense|
       @total_cost += categories_expense.expense.amount
     end
   end
