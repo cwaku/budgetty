@@ -1,8 +1,9 @@
 <p style="color: green"><%= notice %></p>
-<h2>Transaction</h2>
-<% if @expense.empty? %>
-  <p style="color: red">No transactions yet</p>
-<% else %>
+<h2>Transactions</h2>
+<div>
+  <p>Total Cost: $<%= @total_cost%>.00</p>
+</div>
+
 <div id="transactions">
   <% @expense.each_with_index do |transaction, index| %>
   <%= link_to expense_path(transaction.id) do %>
@@ -14,14 +15,13 @@
         <%= transaction.name %>
         Date: <%= transaction.created_at.strftime('%d-%m-%Y')%>
         Time: <%= transaction.created_at.strftime('%H-%M-%S')%>
-
       </div>
       <p><%= transaction.amount %></p>
     </div>
   <% end %>
   <% end %>
 </div>
-<% end %>
+
 
 <div>
   <%= link_to 'Add transaction', new_expense_path%>
