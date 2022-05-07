@@ -1,33 +1,37 @@
 class CategoriesController < ApplicationController
-  # before_action :set_category, only: %i[show edit update destroy]
-
-  # GET /categories or /categories.json
   def index
-    @categories = current_user.categories.order(created_at: :desc).all
+    @categories = Category.where(user_id: current_user.id)
   end
 
-  # GET /categories/1 or /categories/1.json
   def show
-    @categoryi = Category.find(params[:id])
-    @expense = Expense.includes(:categories_expenses).where(category_id: @categoryi.id).order(created_at: :desc)
-    @total_cost = @expense.where(category_id: @categoryi.id).sum(:amount)
-    @category = Category.includes(:categories_expenses).where(id: params[:id])
+    @category = Category.find(params[:id])
+    @category_expenses = @category.expenses.all
   end
 
-  # GET /categories/new
   def new
     @category = Category.new
+    @icons = icons
   end
 
-  # POST /categories or /categories.json
   def create
-    @category = current_user.categories.new(category_params)
-
+    @category = current_user.categories.create(category_params)
     if @category.save
-      redirect_to categories_url, flash: { success: 'Category was successfully created.' }
+      flash[:notice] = 'Category created successfully.'
+      redirect_to root_path
     else
-      redirect_to new_category_url, flash: { danger: 'Category was not created.' }
+      render :new
     end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    authorize! :destroy, @category
+    flash[:notice] = if @category.destroy
+                       'Category removed successfully'
+                     else
+                       'Something went wrong'
+                     end
+    redirect_to root_path
   end
 
   private
@@ -35,5 +39,10 @@ class CategoriesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def category_params
     params.require(:category).permit(:name, :icon)
+  end
+
+  def icons
+    { 'Grocery' => 'icon0.png', 'Shopping' => 'icon1.png', 'Education' => 'icon2.png', 'Bills' => 'icon3.png',
+      'Insurance' => 'icon4.png', 'Travel' => 'icon5.png' }
   end
 end

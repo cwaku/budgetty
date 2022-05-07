@@ -1,23 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get '/users', to: 'users#index', as: 'splash'
-  get '/users', to: 'users#index', as: 'user'
+  unauthenticated do
+    root "users#home"
+  end
 
-  
   root 'categories#index', as: "categorytrack"
-  
-  resources :users, only: [:index]
-  resources :categories, only: [:index, :show, :new, :create]
-  resources :expenses, only: [:index, :show, :new, :create]
-  
-  devise_scope :user do
-    authenticated :user do
-      root "categories#index", as: "authenticated_root"
-      get '/users/sign_out' => 'devise/sessions#destroy'
-    end
-    unauthenticated :user do
-      root "users#index"
-    end
+
+  resources :users
+
+  resources :categories, only: [:index, :show, :new, :create, :destroy] do
+    resources :expenses, only: [ :new, :show, :create, :destroy]
   end
 end
