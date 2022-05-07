@@ -11,10 +11,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: "flash flash_#{name}" %>
+  <body class="bg-slate-300">
+  <main class="  flex flex-col w-full">
+      <%=render 'shared/navbar' %>
+      <% flash.each do |name, msg| %>
+      <div class="text-red-500 text-xs md:text-sm font-light">
+        <%= msg %>
+      </div>
     <% end %>
     <%= yield %>
+  </main>
   </body>
 </html>

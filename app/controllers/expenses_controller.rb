@@ -27,8 +27,14 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/new
   def new
+    # redirect_to new_expense_p
     @expense = Expense.new
     @category = Category.all
+    # reload the page
+    # render :new
+    respond_to do |format|
+      format.html { render :new }
+    end
   end
 
   # POST /expenses or /expenses.json
