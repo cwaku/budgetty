@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   root 'categories#index', as: "categorytrack"
   
   resources :users, only: [:index]
-  resources :categories
-  resources :expenses
+  resources :categories, only: [:index, :show, :new, :create]
+  resources :expenses, only: [:index, :show, :new, :create]
   
   devise_scope :user do
     authenticated :user do
