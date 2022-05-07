@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get '/categories', to: 'categories#index', as: 'user_root'
-  get '/categories', to: 'categories#index', as: 'user'
+  get '/users', to: 'users#index', as: 'splash'
+  get '/users', to: 'users#index', as: 'user'
 
   
   root 'categories#index', as: "categorytrack"
