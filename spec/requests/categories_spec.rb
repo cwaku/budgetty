@@ -1,23 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe 'Categories', type: :request do
-  describe 'GET /categories' do
-    before(:each) do
-      @user = User.create(name: 'Ricky', email: 'ricky1@gmail.com', password: 'password')
-      @category1 = Category.create(user: @user, name: 'Clothes', icon: 'icon')
+  include Devise::Test::IntegrationHelpers
 
-      post user_session_path, params: { user: { email: @user.email, password: @user.password } }
-      get root_path
+  let(:user) { User.create(name: 'Mihreteab Misganaw', email: 'example@mail.com', password: 'password') }
+  let(:category) { user.categories.create(name: 'Shopping', icon: 'https://i.imgur.com/Ar3Lf3Dt.png') }
+  describe 'GET /index' do
+    before do
+      sign_in user
+      get categories_path
     end
 
-    it 'returns http success' do
-      get categories_path
-      expect(response).to have_http_status(:success)
+    it 'response to html' do
+      expect(response.content_type).to include 'text/html'
+    end
+  end
+
+  describe 'GET /new' do
+    before do
+      sign_in user
+      get new_category_path
     end
 
-    it 'renders the index template' do
-      get categories_path
-      expect(response).to render_template('index')
+    it 'respons to html' do
+      expect(response.content_type).to include 'text/html'
     end
   end
 end

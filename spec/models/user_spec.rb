@@ -1,20 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'validations' do
-    before do
-      @user = User.new(name: 'Example User', email: 'rickymormor1@gmail.com', password: 'foobar')
-      @user.save
-    end
+  subject do
+    User.new(name: 'Ricky', email: 'rickymormor1@mail.com', password: 'password')
+  end
+  before { subject.save }
 
-    it 'validates presence of name' do
-      @user.name = nil
-      expect(@user).to_not be_valid
-    end
+  it 'name should not be nil' do
+    subject.name = nil
+    expect(subject).to_not be_valid
+  end
 
-    it 'validates presence of email' do
-      @user.email = nil
-      expect(@user).to_not be_valid
-    end
+  it 'should valid the name' do
+    subject.name = 'Ricky'
+    expect(subject).to be_valid
+  end
+
+  it 'should return role user' do
+    expect(subject.role).to eq 'user'
   end
 end
