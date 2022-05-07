@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show, :new, :create, :destroy] do
     resources :expenses, only: [ :new, :show, :create, :destroy]
   end
+
 end

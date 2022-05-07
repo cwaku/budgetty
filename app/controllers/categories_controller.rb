@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.where(user_id: current_user.id)
+    @categories = Category.where(author_id: current_user.id)
   end
 
   def show
@@ -36,7 +36,6 @@ class CategoriesController < ApplicationController
 
   private
 
-  # Only allow a list of trusted parameters through.
   def category_params
     params.require(:category).permit(:name, :icon)
   end

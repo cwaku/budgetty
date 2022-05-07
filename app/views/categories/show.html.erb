@@ -1,3 +1,16 @@
+<nav class="text-center text-gray-200 tracking-wider bg-[#3778c2] w-full py-3">
+  <ul class="flex justify-between px-4 items-center">
+    <li>
+      <a href="/"><i class="fa fa-arrow-left"></i></a>
+    </li>
+    <li>
+      <h2 class="text-2xl font-medium">Category Details</h2>
+    </li>
+    <li>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+    </li>
+  </ul>
+</nav>
 <div class="p-2 mt-12 bg-white flex w-11/12 justify-between items-center">
   <div class="flex gap-x-12">
     <ul class="p-2 m-2">
@@ -10,6 +23,7 @@
     <li>
       <p class=""> $<%= @category.expenses.sum(:amount)%></p>
     </li>
+    <li>
   </ul>
 </div>
 <% if @category.expenses.any? %>

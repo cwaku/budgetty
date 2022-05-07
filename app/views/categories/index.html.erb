@@ -1,3 +1,16 @@
+<nav class="text-center text-gray-200 tracking-wider bg-[#3778c2] w-full py-3">
+  <ul class="flex justify-between px-4 items-center">
+    <li>
+      <a href="/"><i class="fa fa-arrow-left"></i></a>
+    </li>
+    <li>
+      <h2 class="text-3xl font-medium">Categories</h2>
+    </li>
+    <li>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+    </li>
+  </ul>
+</nav>
 <% if @categories.any?%>
   <% @categories.each do |category| %>
     <div class="p-2 mt-4 bg-white flex w-9/12 justify-between">

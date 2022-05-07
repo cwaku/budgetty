@@ -12,7 +12,7 @@
         </li>
       </ul>
     </nav>
-    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :author_id, value: current_user.id %>
     <div class="text-center mt-20">
       <div class="m-5 mb-3">
         <%= f.text_field :name,required: true, class:"p-2 form-control", placeholder: "Name", id: "name"%><br>

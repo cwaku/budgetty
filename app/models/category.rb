@@ -1,8 +1,7 @@
 class Category < ApplicationRecord
-  belongs_to :user
-  has_many :categories_expenses
-  has_many :expenses, through: :categories_expenses
+  belongs_to :author, class_name: 'User'
+  has_many :expense_categories, dependent: :destroy
+  has_many :expenses, through: :expense_categories, dependent: :destroy
 
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :icon, presence: true
+  validates :name, presence: true
 end
