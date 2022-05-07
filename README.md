@@ -67,8 +67,10 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-Original design idea by [Gregoire Vella on Behance.](https://www.behance.net/gregoirevella)
+### Original design idea by [Gregoire Vella on Behance.](https://www.behance.net/gregoirevella)
 
 ## 📝 License
 
-This project is [MIT](./license.md) licensed.
+This project is MIT licensed.
+
+[Creative Commons license of the design](https://creativecommons.org/licenses/by-nc/4.0/)
