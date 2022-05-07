@@ -1,7 +1,8 @@
 # Budgetty
 
 > A mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
-## Project requirements
+## Deployment
+[![Deployed on heroku](https://img.shields.io/badge/Deployed-Heroku-blueviolet)](https://immense-escarpment-87174.herokuapp.com/)
 
 ## Built With
 
