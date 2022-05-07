@@ -28,7 +28,7 @@
 
 ### Usage
 
-Note: Confirm that you can run `Procfile.dev` to use `./bin/dev`. Else if you can't run it, run `./bin/rails server` but that also won't build the Tailwindcss.
+## Note: Confirm that you can run `Procfile.dev` to use `./bin/dev`. Else if you can't run it, run `./bin/rails server` but that also won't build the Tailwindcss.
 
 - run: ` git clone https://github.com/cwaku/budgetty.git `
 - connect to postgresql with: ` psql -U postgres `
