@@ -1,23 +1,34 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_scope :user do
-    get '/users', to: 'users#index'
-    get '/', to: 'users#index'
 
+  get '/categories', to: 'categories#index', as: 'user_root'
+  get '/categories', to: 'categories#index', as: 'user'
+
+  
+  root 'categories#index', as: "categorytrack"
+  
+  resources :users, only: [:index]
+  resources :categories
+  resources :expenses
+  
+  devise_scope :user do
     authenticated :user do
-      get '/users/sign_out', to: 'devise/sessions#destroy'
-      root 'categories#index', as: :authenticated_root
+      root "categories#index", as: "authenticated_root"
+      get '/users/sign_out' => 'devise/sessions#destroy'
     end
     unauthenticated :user do
-      root 'users#index', as: :unauthenticated_root
+      root "users#index"
     end
   end
+  
+  # unauthenticated do
+  #   root "users#index"
+  # end
 
-
-  # resources :categories_expenses
-  resources :expenses
-  resources :categories
-
+  # authenticated do
+  #   root "categories#index", as: "authenticated_root"
+  #   get '/users/sign_out' => 'devise/sessions#destroy'
+  # end
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
