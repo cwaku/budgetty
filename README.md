@@ -66,7 +66,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-N/A
+Original design idea by [Gregoire Vella on Behance.](https://www.behance.net/gregoirevella)
 
 ## 📝 License
 
