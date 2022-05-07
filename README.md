@@ -2,7 +2,7 @@
 
 > A mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
 ## Deployment
-[![Deployed on heroku](https://img.shields.io/badge/Deployed-Heroku-blueviolet)](https://immense-escarpment-87174.herokuapp.com/)
+[![Deployed on heroku](https://img.shields.io/badge/Deployed-Heroku-blueviolet)](https://fathomless-tundra-27272.herokuapp.com/)
 
 ## [Video Demo](https://www.loom.com/share/cd4c969bf8bb4e29a979334353a6f6d8)
 
