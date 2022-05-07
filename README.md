@@ -4,6 +4,8 @@
 ## Deployment
 [![Deployed on heroku](https://img.shields.io/badge/Deployed-Heroku-blueviolet)](https://immense-escarpment-87174.herokuapp.com/)
 
+## [Video Demo](https://www.loom.com/share/cd4c969bf8bb4e29a979334353a6f6d8)
+
 ## Built With
 
 - css framework: Tailwind rails
