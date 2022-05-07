@@ -30,8 +30,6 @@ class ExpensesController < ApplicationController
     # redirect_to new_expense_p
     @expense = Expense.new
     @category = Category.all
-    # reload the page
-    # render :new
     respond_to do |format|
       format.html { render :new }
     end
