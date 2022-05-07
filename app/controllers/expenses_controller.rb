@@ -27,24 +27,19 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/new
   def new
-    # redirect_to new_expense_p
+    @category = Category.find(params[:category_id])
     @expense = Expense.new
-    @category = Category.all
-    respond_to do |format|
-      format.html { render :new }
-    end
   end
 
   # POST /expenses or /expenses.json
 
   def create
+    @category = Category.find(params[:category_id])
     @expense = current_user.expenses.new(expense_params)
-    @category = Category.all
     if @expense.save
-      CategoriesExpense.create(category_id: @expense.category_id, expense_id: @expense.id)
-      redirect_to expense_url(@expense), flash: { success: 'Expense was successfully created.' }
+      redirect_to category_path, flash: { success: 'Expense was successfully created.' }
     else
-      redirect_to new_category_expense_url, flash: { danger: 'Expense was not created.' }
+      render :new, flash: { danger: 'Expense was not created.' }
     end
   end
 
@@ -52,6 +47,6 @@ class ExpensesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def expense_params
-    params.require(:expense).permit(:amount, :category_id, :name)
+    params.require(:expense).permit(:amount, :user_id, :name)
   end
 end
