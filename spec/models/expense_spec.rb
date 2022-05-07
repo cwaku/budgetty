@@ -11,26 +11,26 @@ RSpec.describe Expense, type: :model do
     it 'validates presence of name' do
       @expense.name = nil
       expect(@expense).to_not be_valid
-      end
+    end
 
     it 'validates presence of amount' do
       @expense.amount = nil
       expect(@expense).to_not be_valid
-      end
+    end
 
-      it 'checks i amount is greater than 0' do
-        @expense.amount = -1
-        expect(@expense).to_not be_valid
-      end
+    it 'checks i amount is greater than 0' do
+      @expense.amount = -1
+      expect(@expense).to_not be_valid
+    end
 
-      it 'validates presence of user_id' do
-        @expense.user_id = nil
-        expect(@expense).to_not be_valid
-      end
+    it 'validates presence of user_id' do
+      @expense.user_id = nil
+      expect(@expense).to_not be_valid
+    end
 
-      it 'validates numericality of amount' do
-        @expense.amount = 'a'
-        expect(@expense).to_not be_valid
-      end
+    it 'validates numericality of amount' do
+      @expense.amount = 'a'
+      expect(@expense).to_not be_valid
+    end
   end
 end
