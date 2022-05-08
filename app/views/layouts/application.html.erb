@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-slate-300">
+  <main class="  flex flex-col w-full">
+      <%=render 'shared/navbar' %>
+      <% flash.each do |name, msg| %>
+      <div class="text-red-500 text-xs md:text-sm font-light">
+        <%= msg %>
+      </div>
+    <% end %>
     <%= yield %>
+  </main>
   </body>
 </html>

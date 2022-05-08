@@ -1,0 +1,55 @@
+<nav class="text-center text-gray-200 tracking-wider bg-[#3778c2] w-full py-3">
+  <ul class="flex justify-between px-4 items-center">
+    <li>
+      <a href="/"><i class="fa fa-arrow-left"></i></a>
+    </li>
+    <li>
+      <h2 class="text-2xl font-medium">Category Details</h2>
+    </li>
+    <li>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+    </li>
+  </ul>
+</nav>
+<div class="p-2 mt-12 bg-white flex w-11/12 justify-between items-center">
+  <div class="flex gap-x-12">
+    <ul class="p-2 m-2">
+      <li class='mt-4'>
+        <p class='font-semibold text-xl'><%= @category.name  %></p>
+      </li>
+    </ul>
+  </div>
+  <ul class="mr-4 flex flex-col gap-y-4">
+    <li>
+      <p class=""> $<%= @category.expenses.sum(:amount)%></p>
+    </li>
+    <li>
+  </ul>
+</div>
+<% if @category.expenses.any? %>
+  <% @category.expenses.order(created_at:'DESC').each do |fd|%>
+    <div class="p-2 m-3 bg-white flex w-11/12 justify-between">
+      <div class="flex gap-x-12">
+        <p> <%=image_tag @category.icon ,class:"w-28 rounded img-thumbnail"%></p>
+        <ul class="w-6/12">
+          <li>
+            <p><%= fd.name%></p>
+          </li>
+          <li>
+            <p> <%= fd.created_at.strftime("%d-%b-%Y")%></p>
+          </li>
+        </ul>
+      </div>
+      <ul class="mr-4 flex flex-col gap-y-4">
+        <li>
+          <p>$<%= fd.amount%></p>
+        </li>
+      </ul>
+    </div>
+  <%end%>
+<%else%>
+  <p class="p-2 m-2 h3" >There are no transactions for this category</p>
+<%end%>
+<div class="w-100 py-3 px-3 btnn">
+  <%= link_to "Add transaction",  new_category_expense_path(@category), class: "mt-20 mb-12 px-24  bg-green-600 text-xl font-light py-3 text-center text-white hover:bg-green-dark focus:outline-none"%>
+</div>

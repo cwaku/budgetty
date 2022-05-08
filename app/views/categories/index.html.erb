@@ -1,0 +1,40 @@
+<nav class="text-center text-gray-200 tracking-wider bg-[#3778c2] w-full py-3">
+  <ul class="flex justify-between px-4 items-center">
+    <li>
+      <a href="/"><i class="fa fa-arrow-left"></i></a>
+    </li>
+    <li>
+      <h2 class="text-3xl font-medium">Categories</h2>
+    </li>
+    <li>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+    </li>
+  </ul>
+</nav>
+<% if @categories.any?%>
+  <% @categories.each do |category| %>
+    <div class="p-2 mt-4 bg-white flex w-9/12 justify-between">
+      <div class="flex gap-x-12">
+        <p> <%=image_tag "#{category.icon}" ,class:"w-28 rounded img-thumbnail"%></p>
+        <ul class="w-9/12">
+          <li>
+            <p ><%= link_to category.name, category_path(category), class:"" %></p>
+          </li>
+          <li>
+            <p> <%= category.created_at.strftime("%d-%b-%Y")%></p>
+          </li>
+        </ul>
+      </div>
+      <ul class="mr-4 flex flex-col gap-y-4">
+        <li>
+          <p> $<%= category.expenses.sum(:amount)%></p>
+        </li>
+      </ul>
+    </div>
+  <%end%>
+<%else%>
+  <p class="text-2xl text-center mt-8">There is no Category. You can add Category</p>
+<%end%>
+<div class="flex items-center justify-center  inset-x-0 bottom-0 h-20 text-center w-full">
+  <%= link_to "Add Category", new_category_path, class: "mt-20 mb-12 px-24  bg-green-600 text-xl font-light py-3 text-center text-white hover:bg-green-dark focus:outline-none" %>
+</div>
